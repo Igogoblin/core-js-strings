@@ -242,8 +242,8 @@ function formatTime(/* minutes, seconds */) {
  *   reverseString('abcdef') => 'fedcba'
  *   reverseString('12345') => '54321'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
 
 /**
@@ -308,8 +308,8 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(str) {
-  return str === reverseString(str);
+function isPalindrome(/* str */) {
+  throw new Error('Not implemented');
 }
 
 /**
@@ -446,8 +446,25 @@ function extractEmails(str) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const al = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const dec = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  return str.split(' ').length === 1
+    ? str
+        .split('')
+        .map((element) => dec.split('')[al.indexOf(element)])
+        .join('')
+    : str
+        .split(' ')
+        .map((element) =>
+          element
+            .split('')
+            .map((el) =>
+              dec.split('')[al.indexOf(el)] ? dec.split('')[al.indexOf(el)] : el
+            )
+            .join('')
+        )
+        .join(' ');
 }
 
 /**
